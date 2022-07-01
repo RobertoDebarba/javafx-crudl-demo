@@ -7,10 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.List;
 import javafx.stage.Modality;
 import javafx.stage.Window;
 
@@ -31,17 +27,17 @@ public class App extends Application {
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
-    
-    static void showModal(String fxml) throws IOException {
+
+    public static void showModal(String fxml) throws IOException {
         // Obtém a tela atual
         Window primaryStage = scene.getRoot().getScene().getWindow();
-        
+
         // Carrega a nova tela
         scene = new Scene(loadFXML(fxml));
-        
+
         // Abre o modal
         final Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
@@ -49,12 +45,12 @@ public class App extends Application {
         dialog.setScene(scene);
         dialog.showAndWait();
     }
-    
-    static void closeCurrentWindow() {
+
+    public static void closeCurrentWindow() {
         ((Stage) scene.getRoot().getScene().getWindow()).close();
-    } 
-    
-    static <T> T loadController(String fxml) throws IOException {
+    }
+
+    private static <T> T loadController(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         fxmlLoader.load();
         return fxmlLoader.getController();

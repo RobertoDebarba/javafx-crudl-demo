@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="172.0" prefWidth="504.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="br.com.cedup.javafxinfo21.CreateUpdateProdutoController">
+<AnchorPane id="AnchorPane" prefHeight="172.0" prefWidth="504.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="br.com.cedup.javafxinfo21.controller.CreateUpdateProdutoController">
    <children>
       <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código" />
       <TextField fx:id="codigoTextField" layoutX="94.0" layoutY="10.0" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="10.0" />
