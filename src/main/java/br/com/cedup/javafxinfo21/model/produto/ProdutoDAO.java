@@ -6,8 +6,14 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DAO (Data Access Object) do POJO Produto
+ */
 public class ProdutoDAO {
 
+    /**
+     * Obtém um Produto com base no ID informado
+     */
     public Produto getById(int id) {
         try {
             Connection connection = ConnectionSingleton.getConnection();
@@ -26,6 +32,9 @@ public class ProdutoDAO {
         }
     }
 
+    /**
+     * Ontém todos os Produtos
+     */
     public List<Produto> getAll() {
         try {
             Connection connection = ConnectionSingleton.getConnection();
@@ -52,6 +61,9 @@ public class ProdutoDAO {
         }
     }
 
+    /**
+     * Salva um novo Produto
+     */
     public void save(Produto novoProduto) {
         try {
             Connection connection = ConnectionSingleton.getConnection();
@@ -65,6 +77,9 @@ public class ProdutoDAO {
         }
     }
 
+    /**
+     * Atualiza os campos nome e preço de um produto com base no ID
+     */
     public void update(Produto produtoEditado) {
         try {
             Connection connection = ConnectionSingleton.getConnection();
@@ -79,6 +94,9 @@ public class ProdutoDAO {
         }
     }
 
+    /**
+     * Remove o Produto informado caso exista
+     */
     public void delete(Produto produtoParaRemover) {
         try {
             Connection connection = ConnectionSingleton.getConnection();

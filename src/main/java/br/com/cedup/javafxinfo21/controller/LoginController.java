@@ -14,6 +14,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * Classe controller do FXML login.
+ */
 public class LoginController implements Initializable {
 
     @FXML
@@ -23,13 +26,18 @@ public class LoginController implements Initializable {
     PasswordField senhaPasswordField;
 
     /**
-     * Initializes the controller class.
+     * Método executado todas as vezes que a tela é aberta, antes de qualquer
+     * outro método.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
 
+    /**
+     * Busca se o usuário existe no banco com base nas informações informadas
+     * na tela.
+     */
     @FXML
     public void login() throws IOException {
         UsuarioDAO dao = new UsuarioDAO();
@@ -37,12 +45,18 @@ public class LoginController implements Initializable {
         boolean usuarioExiste = dao.exists(usuarioLogin);
 
         if (usuarioExiste) {
+            /*
+            Caso o usuário exista leva para a tela principal
+            */
             Stage stage = (Stage) this.usuarioTextField.getScene().getWindow();
             stage.setMaximized(true);
             stage.setResizable(true);
 
             App.setRoot("primary");
         } else {
+            /*
+            Caso o usuário não exista exibe uma mensagem de erro
+            */
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Autenticação");
             alert.setHeaderText(null);

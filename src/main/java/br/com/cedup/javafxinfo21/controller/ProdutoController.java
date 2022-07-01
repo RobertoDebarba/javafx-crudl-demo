@@ -18,6 +18,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+/**
+ * Classe controller do FXML produto.
+ */
 public class ProdutoController implements Initializable {
 
     @FXML
@@ -34,17 +37,26 @@ public class ProdutoController implements Initializable {
 
     private ObservableList<Produto> produtos;
 
+    /**
+     * Método executado todas as vezes que a tela é aberta, antes de qualquer
+     * outro método.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Início da configuração da tabela ---
+        /*
+        Configura as colunas da tabela da interface gráfica
+         */
         this.codigoProdutoColumn.setCellValueFactory(new PropertyValueFactory<>("codigo"));
         this.nomeProdutoColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
         this.precoProdutoColumn.setCellValueFactory(new PropertyValueFactory<>("preco"));
 
+        /*
+        Obtém a lista de itens da interface gráfica para que possamos
+        manipular nesse fonte.
+         */
         this.produtos = this.produtoTable.getItems();
-        // Fim da configuração da tabela ---
 
-        // Bucar os produtos do banco de dados
+        // Bucar os produtos do banco de dados e adiciona na lista gráfica
         ProdutoDAO daoDeProdutos = new ProdutoDAO();
         List<Produto> produtosNoBanco = daoDeProdutos.getAll();
 
@@ -57,19 +69,24 @@ public class ProdutoController implements Initializable {
         Produto produtoSelecionado = this.produtoTable.getSelectionModel().getSelectedItem();
 
         if (produtoSelecionado != null) {
+            // Envia o produto para o model da edição
             CreateUpdateProdutoController.setProduto(produtoSelecionado);
 
+            // Abre o modal de edição e espera o usuário clicar OK
             App.showModal("createUpdateProduto");
 
+            // Obtém o produto alterado do modal de edição
             Produto produtoAlterado = CreateUpdateProdutoController.getProduto();
 
+            // Altera o produto original com o alterado
             produtoSelecionado.setCodigo(produtoAlterado.getCodigo());
             produtoSelecionado.setNome(produtoAlterado.getNome());
             produtoSelecionado.setPreco(produtoAlterado.getPreco());
 
+            // Atualiza a lista gráfica para aplicar as alterações do produto
             this.produtoTable.refresh();
 
-            // Salvar no banco de dados
+            // Salva o  produto no banco de dados
             ProdutoDAO daoDoProduto = new ProdutoDAO();
             daoDoProduto.update(produtoSelecionado);
         }
@@ -77,27 +94,33 @@ public class ProdutoController implements Initializable {
 
     @FXML
     public void novo() throws IOException {
+        // Garante que a tela de edição está vazia
         CreateUpdateProdutoController.setProduto(null);
+        // Mosta o modal de edição do produto e pausa o código até o usuário clicar OK
         App.showModal("createUpdateProduto");
 
+        // Obtém o novo produto criado no modal de edição
         Produto novoProduto = CreateUpdateProdutoController.getProduto();
         if (novoProduto != null) {
-            // Adicionar na lista da tela
+            // Adicionar na lista gráfica
             this.produtos.add(novoProduto);
 
-            // Salvar no banco de dados
+            // Salva o produto no banco de dados
             ProdutoDAO daoDoProduto = new ProdutoDAO();
             daoDoProduto.save(novoProduto);
         }
     }
 
-    //https://code.makery.ch/blog/javafx-dialogs-official/
     @FXML
     public void remover() {
-        // Identifico qual o produto selecionado
+        // Obtém o produto selecionado na lista gráfica
         Produto produtoSelecionado = this.produtoTable.getSelectionModel().getSelectedItem();
 
-        // Confirmação de remoção
+        /*
+        Confirmação de remoção.
+        Documentação sobre mensagens de diálogo no JavaFX
+        https://code.makery.ch/blog/javafx-dialogs-official/
+         */
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Remoção");
         alert.setHeaderText(produtoSelecionado.getCodigo() + " " + produtoSelecionado.getNome());
@@ -105,7 +128,7 @@ public class ProdutoController implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            // Removo o produto
+            // Remove o produto
             this.produtos.remove(produtoSelecionado);
 
             // Remove no banco de dados

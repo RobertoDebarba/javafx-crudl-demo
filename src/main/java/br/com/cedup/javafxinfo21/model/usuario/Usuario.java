@@ -10,6 +10,9 @@ create table usuario (
 insert into usuario (usuario, senha) values ("123", "123");
 insert into usuario (usuario, senha) values ("roberto", "123");
  */
+/**
+ * POJO que representa um Usuario na aplicação.
+ */
 public class Usuario {
 
     private String usuario;

@@ -11,12 +11,15 @@ import javafx.stage.Modality;
 import javafx.stage.Window;
 
 /**
- * JavaFX App
+ * Classe principal da aplicação
  */
 public class App extends Application {
 
     private static Scene scene;
 
+    /**
+     * Método de inicialização da aplicação JavaFX
+     */
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("login"), 800, 600);
@@ -27,10 +30,16 @@ public class App extends Application {
         stage.show();
     }
 
+    /**
+     * Define a tela sendo exibida com base no nome do arquivo fxml
+     */
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
+    /**
+     * Exibe uma janela em modo modal com base no nome do arquivo fxml
+     */
     public static void showModal(String fxml) throws IOException {
         // Obtém a tela atual
         Window primaryStage = scene.getRoot().getScene().getWindow();
@@ -46,6 +55,9 @@ public class App extends Application {
         dialog.showAndWait();
     }
 
+    /**
+     * Fecha a janela atual
+     */
     public static void closeCurrentWindow() {
         ((Stage) scene.getRoot().getScene().getWindow()).close();
     }

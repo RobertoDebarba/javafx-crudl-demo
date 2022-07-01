@@ -4,8 +4,14 @@ import br.com.cedup.javafxinfo21.ConnectionSingleton;
 import java.sql.Connection;
 import java.sql.ResultSet;
 
+/**
+ * DAO (Data Access Object) do POJO Usuario
+ */
 public class UsuarioDAO {
 
+    /**
+     * Verifica se um usuário existe com base no usuario e senha
+     */
     public boolean exists(Usuario usuario) {
         try {
             Connection connection = ConnectionSingleton.getConnection();

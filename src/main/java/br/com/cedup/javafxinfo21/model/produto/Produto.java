@@ -11,6 +11,9 @@ create table produto (
 
 insert into produto values (1, 'PC Gamer', 1000);
  */
+/**
+ * POJO que representa um Produto na aplicação.
+ */
 public class Produto {
 
     private int codigo;
