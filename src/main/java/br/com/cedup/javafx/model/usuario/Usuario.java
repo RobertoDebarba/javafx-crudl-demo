@@ -1,4 +1,4 @@
-package br.com.cedup.javafxinfo21.model.usuario;
+package br.com.cedup.javafx.model.usuario;
 
 /*
 create table usuario (

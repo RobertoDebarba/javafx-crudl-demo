@@ -1,8 +1,9 @@
-package br.com.cedup.javafxinfo21.controller;
+package br.com.cedup.javafx.controller;
 
-import br.com.cedup.javafxinfo21.App;
-import br.com.cedup.javafxinfo21.model.usuario.Usuario;
-import br.com.cedup.javafxinfo21.model.usuario.UsuarioDAO;
+import br.com.cedup.javafx.App;
+import br.com.cedup.javafx.model.usuario.Usuario;
+import br.com.cedup.javafx.model.usuario.UsuarioDAO;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

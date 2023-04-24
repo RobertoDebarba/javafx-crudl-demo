@@ -1,4 +1,4 @@
-package br.com.cedup.javafxinfo21.model.produto;
+package br.com.cedup.javafx.model.produto;
 
 /*
 create database produtojavafx;

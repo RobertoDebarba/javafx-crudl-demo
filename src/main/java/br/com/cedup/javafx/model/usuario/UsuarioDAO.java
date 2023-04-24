@@ -1,6 +1,7 @@
-package br.com.cedup.javafxinfo21.model.usuario;
+package br.com.cedup.javafx.model.usuario;
 
-import br.com.cedup.javafxinfo21.ConnectionSingleton;
+import br.com.cedup.javafx.ConnectionSingleton;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 

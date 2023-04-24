@@ -1,6 +1,6 @@
-package br.com.cedup.javafxinfo21.controller;
+package br.com.cedup.javafx.controller;
 
-import br.com.cedup.javafxinfo21.App;
+import br.com.cedup.javafx.App;
 import java.io.IOException;
 import javafx.fxml.FXML;
 

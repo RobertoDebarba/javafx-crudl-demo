@@ -1,4 +1,4 @@
-package br.com.cedup.javafxinfo21;
+package br.com.cedup.javafx;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

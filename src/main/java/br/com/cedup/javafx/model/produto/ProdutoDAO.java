@@ -1,6 +1,7 @@
-package br.com.cedup.javafxinfo21.model.produto;
+package br.com.cedup.javafx.model.produto;
 
-import br.com.cedup.javafxinfo21.ConnectionSingleton;
+import br.com.cedup.javafx.ConnectionSingleton;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;

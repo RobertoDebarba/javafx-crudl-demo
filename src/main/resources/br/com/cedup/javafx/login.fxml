@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="146.0" prefWidth="401.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.cedup.javafxinfo21.controller.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="146.0" prefWidth="401.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.cedup.javafx.controller.LoginController">
    <children>
       <TextField fx:id="usuarioTextField" layoutX="23.0" layoutY="28.0" onAction="#login" onKeyTyped="#onUserTyped" prefHeight="25.0" prefWidth="360.0" promptText="Usuário" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="28.0" />
       <PasswordField fx:id="senhaPasswordField" layoutX="23.0" layoutY="63.0" onAction="#login" prefHeight="25.0" prefWidth="360.0" promptText="Senha" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="63.0" />

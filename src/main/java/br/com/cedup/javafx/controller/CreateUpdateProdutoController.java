@@ -1,7 +1,8 @@
-package br.com.cedup.javafxinfo21.controller;
+package br.com.cedup.javafx.controller;
 
-import br.com.cedup.javafxinfo21.App;
-import br.com.cedup.javafxinfo21.model.produto.Produto;
+import br.com.cedup.javafx.model.produto.Produto;
+import br.com.cedup.javafx.App;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;

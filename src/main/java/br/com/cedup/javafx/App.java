@@ -1,4 +1,4 @@
-package br.com.cedup.javafxinfo21;
+package br.com.cedup.javafx;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
