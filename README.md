@@ -17,6 +17,27 @@ CRUDL demo application developed with JavaFX 18. It contains:
 ### Import
 
 * Import as a maven project in your favorite IDE
+* Create the database in MySQL
+```sql
+create database produtojavafx;
+
+create table produto (
+	codigo int primary key,
+    nome varchar(255),
+    preco double
+);
+
+insert into produto values (1, 'PC Gamer', 1000);
+
+create table usuario (
+	id int auto_increment primary key,
+	usuario varchar (255),
+    senha varchar (255)
+);
+
+insert into usuario (usuario, senha) values ("123", "123");
+insert into usuario (usuario, senha) values ("roberto", "123");
+```
 
 ## License
 
