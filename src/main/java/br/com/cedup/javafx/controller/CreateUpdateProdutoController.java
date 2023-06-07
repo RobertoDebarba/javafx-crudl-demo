@@ -72,19 +72,33 @@ public class CreateUpdateProdutoController implements Initializable {
         if (!this.nomeTextField.getText().isEmpty() //
                 && !this.precoTextField.getText().isEmpty()) {
 
-            /*
-            Lê as informações dos campos das telas e salva na variável de produto
-            */
-            produto = new Produto( //
-                                   this.codigoTextField.getText().isBlank() ? 0 : Integer.parseInt(this.codigoTextField.getText()), //
-                                   this.nomeTextField.getText(), //
-                                   Double.parseDouble(this.precoTextField.getText()) //
-            );
+            // Verifica se o preço possui um formato válido (13232 ou 1232.31231)
+            if (this.precoTextField.getText().matches("\\d+\\.?\\d*")) {
+                /*
+                Lê as informações dos campos das telas e salva na variável de produto
+                */
+                produto = new Produto( //
+                                       this.codigoTextField.getText().isBlank() ? 0 : Integer.parseInt(this.codigoTextField.getText()), //
+                                       this.nomeTextField.getText(), //
+                                       Double.parseDouble(this.precoTextField.getText()) //
+                );
 
-            /*
-            Fecha a janela modal.
-            */
-            App.closeModal();
+                /*
+                Fecha a janela modal.
+                */
+                App.closeModal();
+
+            } else {
+                /*
+                Exibe um alerta sobre o formato do preço
+                 */
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Produto");
+                alert.setHeaderText("Valores inválidos");
+                alert.setContentText("O formato do preço é inválido (exemplo: 10.50).");
+
+                alert.showAndWait();
+            }
         } else {
             /*
             Exibe um alerta sobre os campos obrigatórios e não fecha a tela.
