@@ -113,4 +113,9 @@ public class CreateUpdateProdutoController implements Initializable {
 
     }
 
+    @FXML
+    public void cancelar() {
+        App.closeModal();
+    }
+
 }
