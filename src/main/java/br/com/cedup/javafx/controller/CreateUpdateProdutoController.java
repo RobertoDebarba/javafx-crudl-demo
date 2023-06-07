@@ -41,6 +41,13 @@ public class CreateUpdateProdutoController implements Initializable {
             nomeTextField.setText(produto.getNome());
             precoTextField.setText(Double.toString(produto.getPreco()));
         }
+
+        /*
+        Escuta as alterações no campo preço removendo qualquer carácter não numérico exceto ponto
+         */
+        precoTextField.textProperty().addListener((o, oldValue, newValue) -> {
+            precoTextField.setText(newValue.replaceAll("[^\\d.]", ""));
+        });
     }
 
     /**
