@@ -22,7 +22,7 @@ CRUDL demo application developed with JavaFX 18. It contains:
 create database produtojavafx;
 
 create table produto (
-	codigo int primary key,
+	codigo int auto_increment primary key,
     nome varchar(255),
     preco double
 );

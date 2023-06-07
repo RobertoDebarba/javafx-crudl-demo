@@ -1,10 +1,10 @@
 package br.com.cedup.javafx.controller;
 
-import br.com.cedup.javafx.model.produto.Produto;
-import br.com.cedup.javafx.App;
-
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import br.com.cedup.javafx.App;
+import br.com.cedup.javafx.model.produto.Produto;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -61,15 +61,14 @@ public class CreateUpdateProdutoController implements Initializable {
      */
     @FXML
     public void salvar() {
-        if (!this.codigoTextField.getText().isEmpty() //
-                && !this.nomeTextField.getText().isEmpty() //
+        if (!this.nomeTextField.getText().isEmpty() //
                 && !this.precoTextField.getText().isEmpty()) {
 
             /*
             Lê as informações dos campos das telas e salva na variável de produto
             */
             produto = new Produto( //
-                    Integer.parseInt(this.codigoTextField.getText()), // 
+                    this.codigoTextField.getText().isBlank() ? 0 : Integer.parseInt(this.codigoTextField.getText()), //
                     this.nomeTextField.getText(), //
                     Double.parseDouble(this.precoTextField.getText()) //
             );

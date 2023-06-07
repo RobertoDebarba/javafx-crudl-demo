@@ -62,11 +62,10 @@ public class ProdutoDAO {
      * Salva um novo Produto
      */
     public void save(Produto novoProduto) {
-        final String sql = "INSERT INTO produto (codigo, nome, preco) values (?, ?, ?)";
+        final String sql = "INSERT INTO produto (nome, preco) values (?, ?)";
         try (final PreparedStatement preparedStatement = ConnectionSingleton.getConnection().prepareStatement(sql)) {
-            preparedStatement.setInt(1, novoProduto.getCodigo());
-            preparedStatement.setString(2, novoProduto.getNome());
-            preparedStatement.setDouble(3, novoProduto.getPreco());
+            preparedStatement.setString(1, novoProduto.getNome());
+            preparedStatement.setDouble(2, novoProduto.getPreco());
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
