@@ -7,6 +7,7 @@ import br.com.cedup.javafx.App;
 import br.com.cedup.javafx.model.produto.Produto;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 /**
@@ -68,16 +69,27 @@ public class CreateUpdateProdutoController implements Initializable {
             Lê as informações dos campos das telas e salva na variável de produto
             */
             produto = new Produto( //
-                    this.codigoTextField.getText().isBlank() ? 0 : Integer.parseInt(this.codigoTextField.getText()), //
-                    this.nomeTextField.getText(), //
-                    Double.parseDouble(this.precoTextField.getText()) //
+                                   this.codigoTextField.getText().isBlank() ? 0 : Integer.parseInt(this.codigoTextField.getText()), //
+                                   this.nomeTextField.getText(), //
+                                   Double.parseDouble(this.precoTextField.getText()) //
             );
+
+            /*
+            Fecha a janela modal.
+            */
+            App.closeModal();
+        } else {
+            /*
+            Exibe um alerta sobre os campos obrigatórios e não fecha a tela.
+             */
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Produto");
+            alert.setHeaderText("Valores inválidos");
+            alert.setContentText("Todos os compos marcados com * são obrigatórios.");
+
+            alert.showAndWait();
         }
 
-        /*
-        Fecha a janela modal.
-        */
-        App.closeModal();
     }
 
 }

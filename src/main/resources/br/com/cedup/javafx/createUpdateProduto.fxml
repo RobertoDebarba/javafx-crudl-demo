@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="172.0" prefWidth="504.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="br.com.cedup.javafx.controller.CreateUpdateProdutoController">
+<AnchorPane id="AnchorPane" prefHeight="172.0" prefWidth="504.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.cedup.javafx.controller.CreateUpdateProdutoController">
    <children>
       <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código" />
       <TextField fx:id="codigoTextField" disable="true" layoutX="94.0" layoutY="10.0" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="10.0" />
@@ -16,5 +15,7 @@
       <Text layoutX="14.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Preço" />
       <Button defaultButton="true" layoutX="195.0" layoutY="132.0" mnemonicParsing="false" onAction="#salvar" text="Salvar" AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="18.0" />
       <Button cancelButton="true" layoutX="122.0" layoutY="130.0" mnemonicParsing="false" text="Cancelar" AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="77.0" />
+      <Text fill="RED" layoutX="47.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
+      <Text fill="RED" layoutX="44.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
    </children>
 </AnchorPane>
