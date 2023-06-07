@@ -74,7 +74,7 @@ public class ProdutoController implements Initializable {
             CreateUpdateProdutoController.setProduto(produtoSelecionado);
 
             // Abre o modal de edição e espera o usuário clicar OK
-            App.showModal("createUpdateProduto");
+            App.openModal("createUpdateProduto");
 
             // Obtém o produto alterado do modal de edição
             Produto produtoAlterado = CreateUpdateProdutoController.getProduto();
@@ -98,7 +98,7 @@ public class ProdutoController implements Initializable {
         // Garante que a tela de edição está vazia
         CreateUpdateProdutoController.setProduto(null);
         // Mosta o modal de edição do produto e pausa o código até o usuário clicar OK
-        App.showModal("createUpdateProduto");
+        App.openModal("createUpdateProduto");
 
         // Obtém o novo produto criado no modal de edição
         Produto novoProduto = CreateUpdateProdutoController.getProduto();

@@ -53,7 +53,7 @@ public class LoginController implements Initializable {
             stage.setMaximized(true);
             stage.setResizable(true);
 
-            App.setRoot("primary");
+            App.openWindow("primary");
         } else {
             /*
             Caso o usuário não exista exibe uma mensagem de erro

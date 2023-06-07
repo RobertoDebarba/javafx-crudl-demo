@@ -78,7 +78,7 @@ public class CreateUpdateProdutoController implements Initializable {
         /*
         Fecha a janela modal.
         */
-        App.closeCurrentWindow();
+        App.closeModal();
     }
 
 }

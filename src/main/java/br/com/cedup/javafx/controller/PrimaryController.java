@@ -11,11 +11,11 @@ public class PrimaryController {
 
     @FXML
     public void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
+        App.openWindow("secondary");
     }
     
     @FXML
     public void switchToProduto() throws IOException {
-        App.setRoot("produto");
+        App.openWindow("produto");
     }
 }
