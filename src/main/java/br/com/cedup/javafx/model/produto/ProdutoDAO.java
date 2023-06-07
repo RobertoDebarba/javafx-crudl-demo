@@ -1,11 +1,11 @@
 package br.com.cedup.javafx.model.produto;
 
-import br.com.cedup.javafx.ConnectionSingleton;
-
-import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.cedup.javafx.ConnectionSingleton;
 
 /**
  * DAO (Data Access Object) do POJO Produto
@@ -16,18 +16,18 @@ public class ProdutoDAO {
      * Obtém um Produto com base no ID informado
      */
     public Produto getById(int id) {
-        try {
-            Connection connection = ConnectionSingleton.getConnection();
-            ResultSet resultadoProdutos = connection. //
-                    createStatement(). //
-                    executeQuery("SELECT * FROM produto WHERE codigo = " + id);
+        final String sql = "SELECT * FROM produto WHERE codigo = ?";
+        try (final PreparedStatement preparedStatement = ConnectionSingleton.getConnection().prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            try (final ResultSet resultadoProdutos = preparedStatement.executeQuery()) {
 
-            resultadoProdutos.next();
-            int codigo = resultadoProdutos.getInt("codigo");
-            String nome = resultadoProdutos.getString("nome");
-            double preco = resultadoProdutos.getDouble("preco");
+                resultadoProdutos.next();
+                int codigo = resultadoProdutos.getInt("codigo");
+                String nome = resultadoProdutos.getString("nome");
+                double preco = resultadoProdutos.getDouble("preco");
 
-            return new Produto(codigo, nome, preco);
+                return new Produto(codigo, nome, preco);
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -37,17 +37,13 @@ public class ProdutoDAO {
      * Ontém todos os Produtos
      */
     public List<Produto> getAll() {
-        try {
-            Connection connection = ConnectionSingleton.getConnection();
-            ResultSet resultadoProdutos = connection. //
-                    createStatement(). //
-                    executeQuery("SELECT * FROM produto");
+        final String sql = "SELECT * FROM produto";
+        try (final PreparedStatement preparedStatement = ConnectionSingleton.getConnection().prepareStatement(sql); //
+                final ResultSet resultadoProdutos = preparedStatement.executeQuery()) {
 
             List<Produto> resultadoComTodosOsProdutos = new ArrayList<>();
 
-            while (!resultadoProdutos.isLast()) {
-                resultadoProdutos.next();
-
+            while (resultadoProdutos.next()) {
                 int codigo = resultadoProdutos.getInt("codigo");
                 String nome = resultadoProdutos.getString("nome");
                 double preco = resultadoProdutos.getDouble("preco");
@@ -66,13 +62,12 @@ public class ProdutoDAO {
      * Salva um novo Produto
      */
     public void save(Produto novoProduto) {
-        try {
-            Connection connection = ConnectionSingleton.getConnection();
-            connection.createStatement(). //
-                    executeUpdate("INSERT INTO produto values (" //
-                            + novoProduto.getCodigo() //
-                            + ", '" + novoProduto.getNome() + "'" //
-                            + ", " + novoProduto.getPreco() + ")");
+        final String sql = "INSERT INTO produto (codigo, nome, preco) values (?, ?, ?)";
+        try (final PreparedStatement preparedStatement = ConnectionSingleton.getConnection().prepareStatement(sql)) {
+            preparedStatement.setInt(1, novoProduto.getCodigo());
+            preparedStatement.setString(2, novoProduto.getNome());
+            preparedStatement.setDouble(3, novoProduto.getPreco());
+            preparedStatement.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -82,14 +77,12 @@ public class ProdutoDAO {
      * Atualiza os campos nome e preço de um produto com base no ID
      */
     public void update(Produto produtoEditado) {
-        try {
-            Connection connection = ConnectionSingleton.getConnection();
-            connection.createStatement(). //
-                    executeUpdate("UPDATE produto SET " //
-                            + "nome = '" + produtoEditado.getNome() + "'" //
-                            + ", preco = " + produtoEditado.getPreco() //
-                            + " WHERE codigo = " + produtoEditado.getCodigo() //
-                    );
+        final String sql = "UPDATE produto SET nome = ?, preco = ? WHERE codigo = ?";
+        try (final PreparedStatement preparedStatement = ConnectionSingleton.getConnection().prepareStatement(sql)) {
+            preparedStatement.setString(1, produtoEditado.getNome());
+            preparedStatement.setDouble(2, produtoEditado.getPreco());
+            preparedStatement.setInt(3, produtoEditado.getCodigo());
+            preparedStatement.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -99,10 +92,10 @@ public class ProdutoDAO {
      * Remove o Produto informado caso exista
      */
     public void delete(Produto produtoParaRemover) {
-        try {
-            Connection connection = ConnectionSingleton.getConnection();
-            connection.createStatement(). //
-                    executeUpdate("DELETE FROM produto where codigo = " + produtoParaRemover.getCodigo());
+        final String sql = "DELETE FROM produto WHERE codigo = ?";
+        try (final PreparedStatement preparedStatement = ConnectionSingleton.getConnection().prepareStatement(sql)) {
+            preparedStatement.setInt(1, produtoParaRemover.getCodigo());
+            preparedStatement.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
