@@ -103,12 +103,12 @@ public class ProdutoController implements Initializable {
         // Obtém o novo produto criado no modal de edição
         Produto novoProduto = CreateUpdateProdutoController.getProduto();
         if (novoProduto != null) {
-            // Adicionar na lista gráfica
-            this.produtos.add(novoProduto);
-
             // Salva o produto no banco de dados
             ProdutoDAO daoDoProduto = new ProdutoDAO();
-            daoDoProduto.save(novoProduto);
+            novoProduto = daoDoProduto.save(novoProduto);
+
+            // Adicionar na lista gráfica
+            this.produtos.add(novoProduto);
         }
     }
 

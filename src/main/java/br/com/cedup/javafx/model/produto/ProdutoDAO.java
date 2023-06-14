@@ -2,6 +2,7 @@ package br.com.cedup.javafx.model.produto;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,12 +62,19 @@ public class ProdutoDAO {
     /**
      * Salva um novo Produto
      */
-    public void save(Produto novoProduto) {
+    public Produto save(Produto novoProduto) {
         final String sql = "INSERT INTO produto (nome, preco) values (?, ?)";
-        try (final PreparedStatement preparedStatement = ConnectionSingleton.getConnection().prepareStatement(sql)) {
+        try (final PreparedStatement preparedStatement = ConnectionSingleton.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, novoProduto.getNome());
             preparedStatement.setDouble(2, novoProduto.getPreco());
             preparedStatement.executeUpdate();
+
+            // Obtém o ID gerado (auto_increment) do produto e atualiza o objeto original
+            try (ResultSet rs = preparedStatement.getGeneratedKeys()) {
+                rs.next();
+                novoProduto.setCodigo(rs.getInt(1));
+                return novoProduto;
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
